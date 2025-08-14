@@ -11,7 +11,7 @@ const About = () => {
           for each individual customer. We believe in the power of a great cup 
           of coffee to bring people together and create meaningful connections.
         </p>
-        <a href="/about" className={styles.textLink}>Learn More →</a>
+        <a href="/not-found" className={styles.textLink}>Learn More →</a>
       </div>
     </section>
   );
