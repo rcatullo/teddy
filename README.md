@@ -84,21 +84,6 @@ return new Response(stream.toReadableStream());
 
 ## API Documentation
 
-### Assistant Management
-
-#### Create Assistant
-```http
-POST /api/assistants
-```
-Creates a new OpenAI assistant with configured tools and capabilities.
-
-**Response:**
-```json
-{
-  "assistantId": "asst_..."
-}
-```
-
 ### Thread Management
 
 #### Create Thread
@@ -159,57 +144,6 @@ Submits the results of function calls back to the assistant.
 
 **Response:** Streaming response with assistant's reaction to tool outputs
 
-### File Management
-
-#### Upload File
-```http
-POST /api/assistants/files
-Content-Type: multipart/form-data
-```
-
-Uploads a file to the assistant's vector store for file search capabilities.
-
-**Parameters:**
-- `file` (File): File to upload
-
-**Features:**
-- **Vector Store Integration**: Automatically adds files to semantic search index
-- **File Validation**: Ensures proper file format and size
-- **Automatic Indexing**: Files are immediately available for search
-
-#### List Files
-```http
-GET /api/assistants/files
-```
-
-Retrieves all files in the assistant's vector store.
-
-**Response:**
-```json
-[
-  {
-    "file_id": "file_...",
-    "filename": "document.pdf",
-    "status": "indexed"
-  }
-]
-```
-
-#### Delete File
-```http
-DELETE /api/assistants/files
-Content-Type: application/json
-```
-
-Removes a file from the assistant's vector store.
-
-**Request Body:**
-```json
-{
-  "fileId": "file_..."
-}
-```
-
 ## Configuration
 
 ### Environment Variables
@@ -227,7 +161,6 @@ OPENAI_ASSISTANT_ID=asst_...             # Pre-existing assistant ID
 The assistant is configured with the following capabilities:
 
 - **Code Interpreter**: Execute Python code and analyze data
-- **File Search**: Semantic search through uploaded documents
 - **Function Calling**: Execute custom functions and API calls
 - **Vision**: Process and analyze images
 
@@ -256,17 +189,7 @@ function App() {
 }
 ```
 
-### File Upload Integration
-```typescript
-// Upload files for assistant to search
-const formData = new FormData();
-formData.append('file', fileInput.files[0]);
 
-await fetch('/api/assistants/files', {
-  method: 'POST',
-  body: formData
-});
-```
 
 ## Deployment
 
@@ -285,11 +208,23 @@ This project can be deployed to any platform that supports Next.js:
 app/
 ├── api/                          # API routes
 │   └── assistants/
-│       ├── files/               # File management endpoints
 │       └── threads/             # Thread and message endpoints
 ├── components/                   # React components
 │   ├── chat/                    # Chat UI components
+│   │   ├── ChatHeader.tsx       # Chat header component
+│   │   ├── ChatInput.tsx        # Message input component
+│   │   ├── Message.tsx          # Individual message display
+│   │   └── TypingIndicator.tsx  # Loading indicator
+│   ├── About.tsx                # About section component
+│   ├── ChatToggle.tsx           # Chat toggle button
+│   ├── Footer.tsx               # Footer component
+│   ├── Hero.tsx                 # Hero section
+│   ├── MenuItem.tsx             # Menu item component
+│   ├── MenuPreview.tsx          # Menu preview component
 │   └── chat.tsx                 # Main chat component
+├── constants/                    # Application constants
+│   ├── footer.ts                # Footer data
+│   └── menu.ts                  # Menu data
 ├── hooks/                       # Custom React hooks
 │   └── useChat.ts              # Chat state management
 ├── assistant-config.ts          # Assistant configuration
