@@ -11,8 +11,8 @@ A commerce agent built using the OpenAI [Assistants API](https://platform.openai
 ### 1. Clone repo
 
 ```shell
-git clone https://github.com/openai/openai-assistants-quickstart.git
-cd openai-assistants-quickstart
+git clone https://github.com/rcatullo/teddy.git
+cd teddy
 ```
 
 ### 2. Set your [OpenAI API key](https://platform.openai.com/api-keys)
