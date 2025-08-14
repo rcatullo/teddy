@@ -1,27 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
+import Chat from "./components/chat";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import MenuPreview from "./components/MenuPreview";
+import Footer from "./components/Footer";
+import ChatToggle from "./components/ChatToggle";
 
 const Home = () => {
-  const categories = {
-    "Basic chat": "basic-chat",
-    "Function calling": "function-calling",
-    "File search": "file-search",
-    All: "all",
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
   };
 
   return (
     <main className={styles.main}>
-      <div className={styles.title}>
-        Explore sample apps built with Assistants API
-      </div>
       <div className={styles.container}>
-        {Object.entries(categories).map(([name, url]) => (
-          <a key={name} className={styles.category} href={`/examples/${url}`}>
-            {name}
-          </a>
-        ))}
+        {/* Main content area */}
+        <div className={styles.mainContent}>
+          <Hero />
+          <About />
+          <MenuPreview />
+          <Footer />
+        </div>
+        
+        {/* Chat sidebar */}
+        <div className={`${styles.chatSidebar} ${isChatOpen ? styles.open : styles.closed}`}>
+          <Chat />
+        </div>
+        
+        {/* Toggle button */}
+        <ChatToggle isOpen={isChatOpen} onToggle={toggleChat} />
       </div>
     </main>
   );
