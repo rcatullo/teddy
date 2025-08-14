@@ -10,10 +10,10 @@ const Hero = () => {
           One cup at a time, one customer at a time
         </p>
         <div className={styles.heroButtons}>
-          <a href="/menu" className={styles.primaryButton}>
+          <a href="/not-found" className={styles.primaryButton}>
             Explore Our Menu
           </a>
-          <a href="/locations" className={styles.secondaryButton}>
+          <a href="/not-found" className={styles.secondaryButton}>
             Find a Location
           </a>
         </div>

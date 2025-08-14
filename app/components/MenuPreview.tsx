@@ -18,7 +18,7 @@ const MenuPreview = () => {
           />
         ))}
       </div>
-      <a href="/menu" className={styles.textLink}>View Full Menu →</a>
+      <a href="/not-found" className={styles.textLink}>View Full Menu →</a>
     </section>
   );
 };
